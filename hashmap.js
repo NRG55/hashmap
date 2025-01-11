@@ -1,7 +1,8 @@
 export default class Hashmap {
     constructor() {
         this.loadFactor;
-        this.capacity;
+        this.capacity = 16;
+        this.buckets = new Array(this.capacity).fill([]);
     };
 
     hash(key) {
@@ -9,9 +10,17 @@ export default class Hashmap {
         const primeNumber = 31;
 
         for (let i = 0; i < key.length; i++) {
-            hashCode = primeNumber * hashCode + key.charCodeAt(i);
+            hashCode = (primeNumber * hashCode + key.charCodeAt(i)) % this.capacity;
+            console.log(hashCode)
           };
 
           return hashCode;
+    };
+
+    set(key, value) {
+        const hashcode = this.hash(key);
+        this.buckets[hashcode] = { key, value };
+
+        return this.buckets;
     };
 }
