@@ -26,8 +26,8 @@ export default class Hashmap {
 
     get(key) {
         const index = this.hash(key);
-        let bucket = this.buckets[index];
-
-        return bucket ? bucket.value : null;
+        let bucket = this.buckets[index];        
+        
+        return bucket.value ? bucket.value : null;
     };
 }
