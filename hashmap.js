@@ -18,9 +18,16 @@ export default class Hashmap {
     };
 
     set(key, value) {
-        const hashcode = this.hash(key);
-        this.buckets[hashcode] = { key, value };
+        const index = this.hash(key);
+        this.buckets[index] = { key, value };
 
         return this.buckets;
+    };
+
+    get(key) {
+        const index = this.hash(key);
+        let bucket = this.buckets[index];
+
+        return bucket ? bucket.value : null;
     };
 }
