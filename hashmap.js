@@ -30,4 +30,8 @@ export default class Hashmap {
         
         return bucket.value ? bucket.value : null;
     };
+
+    has(key) {
+        return this.get(key) ? true : false;
+    };
 }
