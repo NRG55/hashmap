@@ -56,4 +56,9 @@ export default class Hashmap {
 
         return length;
     };
+
+    clear() {
+        this.capacity = 16;
+        this.buckets = new Array(this.capacity).fill(null);
+    };
 }
