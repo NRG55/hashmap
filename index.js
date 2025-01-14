@@ -9,5 +9,6 @@ console.log(hashmap.set("Paul", "Harrison"));
 console.log(hashmap.get("John"));
 console.log(hashmap.has("John"));
 console.log(hashmap.has("Peter"));
-console.log(hashmap.remove("Paul"));
+// console.log(hashmap.remove("Paul"));
 console.log(hashmap.buckets);
+console.log(hashmap.length());

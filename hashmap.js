@@ -44,4 +44,16 @@ export default class Hashmap {
 
         return false;
     };
+
+    length() {
+        let length = 0;
+
+        this.buckets.forEach((bucket) => {
+            if (bucket !== null) {
+                length++
+            };
+        });
+
+        return length;
+    };
 }
