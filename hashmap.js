@@ -2,7 +2,7 @@ export default class Hashmap {
     constructor() {
         this.loadFactor;
         this.capacity = 16;
-        this.buckets = new Array(this.capacity).fill([]);
+        this.buckets = new Array(this.capacity).fill(null);
     };
 
     hash(key) {
@@ -26,12 +26,22 @@ export default class Hashmap {
 
     get(key) {
         const index = this.hash(key);
-        let bucket = this.buckets[index];        
+        let bucket = this.buckets[index];       
         
-        return bucket.value ? bucket.value : null;
+        return bucket ? bucket.value : null;
     };
 
     has(key) {
         return this.get(key) ? true : false;
+    };
+
+    remove(key) {
+        if (this.has(key)) {
+            this.buckets[this.hash(key)] = null;
+
+            return true;
+        };
+
+        return false;
     };
 }
