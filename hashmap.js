@@ -19,7 +19,7 @@ export default class Hashmap {
 
     set(key, value) {
         const index = this.hash(key);
-        this.buckets[index] = { key, value };
+        this.buckets[index] = {key, value};
 
         return this.buckets;
     };
@@ -60,5 +60,17 @@ export default class Hashmap {
     clear() {
         this.capacity = 16;
         this.buckets = new Array(this.capacity).fill(null);
+    };
+
+    keys() {
+        let tempArray = [];
+
+        this.buckets.forEach((bucket) => {
+            if (bucket !== null) {
+                tempArray.push(bucket.key);
+            };
+        });
+
+        return tempArray;
     };
 }
