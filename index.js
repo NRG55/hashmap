@@ -16,3 +16,4 @@ console.log(hashmap.length());
 console.log(hashmap.buckets);
 console.log(hashmap.keys());
 console.log(hashmap.values());
+console.log(hashmap.entries());
