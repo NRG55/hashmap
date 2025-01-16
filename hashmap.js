@@ -73,4 +73,17 @@ export default class Hashmap {
 
         return tempArray;
     };
+
+    values() {
+        let tempArray = [];
+
+        this.buckets.forEach((bucket) => {
+            if (bucket !== null) {
+                tempArray.push(bucket.value);
+            };
+        });
+
+        return tempArray;
+    };
+
 }

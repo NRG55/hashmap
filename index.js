@@ -15,3 +15,4 @@ console.log(hashmap.length());
 // hashmap.clear();
 console.log(hashmap.buckets);
 console.log(hashmap.keys());
+console.log(hashmap.values());
