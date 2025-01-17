@@ -2,18 +2,18 @@ import Hashmap from "./hashmap.js";
 
 const hashmap = new Hashmap();
 
-console.log(hashmap.hash("test"));
-console.log(hashmap.buckets);
-console.log(hashmap.set("John", "Smith"));
-console.log(hashmap.set("Paul", "Harrison"));
-console.log(hashmap.get("John"));
-console.log(hashmap.has("John"));
-console.log(hashmap.has("Peter"));
-// console.log(hashmap.remove("Paul"));
-console.log(hashmap.buckets);
-console.log(hashmap.length());
-// hashmap.clear();
-console.log(hashmap.buckets);
-console.log(hashmap.keys());
-console.log(hashmap.values());
-console.log(hashmap.entries());
+hashmap.set('apple', 'red')
+hashmap.set('banana', 'yellow')
+hashmap.set('carrot', 'orange')
+hashmap.set('dog', 'brown')
+hashmap.set('elephant', 'gray')
+hashmap.set('frog', 'green')
+hashmap.set('grape', 'purple')
+hashmap.set('hat', 'black')
+hashmap.set('ice cream', 'white')
+hashmap.set('jacket', 'blue')
+hashmap.set('kite', 'pink')
+hashmap.set('lion', 'golden')
+console.log(hashmap.buckets)
+hashmap.resize()
+console.log(hashmap.buckets)

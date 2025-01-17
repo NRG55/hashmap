@@ -11,8 +11,7 @@ export default class Hashmap {
         const primeNumber = 31;
 
         for (let i = 0; i < key.length; i++) {
-            hashCode = (primeNumber * hashCode + key.charCodeAt(i)) % this.capacity;
-            console.log(hashCode)
+            hashCode = (primeNumber * hashCode + key.charCodeAt(i)) % this.capacity;          
           };
 
           return hashCode;
@@ -106,5 +105,19 @@ export default class Hashmap {
         });
 
         return tempArray;
+    };
+
+    //doubles the capacity of the buckets array and sets all existing buckets in a new array
+    resize() {
+        this.capacity *= 2;
+        const oldBuckets = this.buckets;
+
+        this.buckets = new Array(this.capacity).fill(null);
+        
+        oldBuckets.forEach((bucket) => {
+            if (bucket !== null) {
+                this.set(bucket.key, bucket.value);
+            };
+        });
     };
 }
