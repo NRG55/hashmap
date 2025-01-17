@@ -1,10 +1,11 @@
 export default class Hashmap {
     constructor() {
-        this.loadFactor;
+        this.loadFactor = 0.75;
         this.capacity = 16;
         this.buckets = new Array(this.capacity).fill(null);
     };
 
+    // Takes a key and produces a hash code whith it
     hash(key) {
         let hashCode = 0;
         const primeNumber = 31;
@@ -17,6 +18,7 @@ export default class Hashmap {
           return hashCode;
     };
 
+    // Takes two arguments: a key a value and assigns to this key
     set(key, value) {
         const index = this.hash(key);
         this.buckets[index] = {key, value};
@@ -24,6 +26,7 @@ export default class Hashmap {
         return this.buckets;
     };
 
+    //takes one argument as a key and returns the value that is assigned to this key. If a key is not found, return null
     get(key) {
         const index = this.hash(key);
         let bucket = this.buckets[index];       
@@ -31,10 +34,12 @@ export default class Hashmap {
         return bucket ? bucket.value : null;
     };
 
+    //takes a key as an argument and returns true or false based on whether or not the key is in the hash map
     has(key) {
         return this.get(key) ? true : false;
     };
 
+    //takes a key as an argument. If the key is in the hash map - removes it and returns true. If the key isn’t in the hash map - returns false.
     remove(key) {
         if (this.has(key)) {
             this.buckets[this.hash(key)] = null;
@@ -45,6 +50,7 @@ export default class Hashmap {
         return false;
     };
 
+    //returns the number of stored keys in the hash map
     length() {
         let length = 0;
 
@@ -57,11 +63,13 @@ export default class Hashmap {
         return length;
     };
 
+    //removes all entries in the hash map
     clear() {
         this.capacity = 16;
         this.buckets = new Array(this.capacity).fill(null);
     };
 
+    //returns an array containing all the keys inside the hash map
     keys() {
         let tempArray = [];
 
@@ -74,6 +82,7 @@ export default class Hashmap {
         return tempArray;
     };
 
+    //returns an array containing all the values
     values() {
         let tempArray = [];
 
@@ -86,6 +95,7 @@ export default class Hashmap {
         return tempArray;
     };
 
+    //returns an array that contains each key, value pair in a format: [[firstKey, firstValue], [secondKey, secondValue]]
     entries() {
         let tempArray = [];
 
