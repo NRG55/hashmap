@@ -1,3 +1,5 @@
+import Node from "./node.js";
+
 export default class Hashmap {
     constructor() {
         this.loadFactor = 0.75;
@@ -20,9 +22,27 @@ export default class Hashmap {
     // Takes two arguments: a key a value and assigns to this key
     set(key, value) {
         const index = this.hash(key);
-        this.buckets[index] = {key, value};
+        const bucket = this.buckets[index];
+        const newNode = new Node(key, value);        
 
-        return this.buckets;
+        if (bucket === null) {            
+            this.buckets[index] = newNode;
+
+            return;
+        };
+        
+        // checks if the same key exists and update the value;
+        if (bucket.key === key) {
+            bucket.value = value;
+        } else {
+            //if the same index and a bucket is already occupied - adds a new node to the end of the linked list
+            let current = bucket;
+
+            while (current.next !== null) {
+                current = current.next;
+            };
+            current.next = newNode;            
+        };            
     };
 
     //takes one argument as a key and returns the value that is assigned to this key. If a key is not found, return null
@@ -35,7 +55,11 @@ export default class Hashmap {
 
     //takes a key as an argument and returns true or false based on whether or not the key is in the hash map
     has(key) {
-        return this.get(key) ? true : false;
+        for (let bucket of this.buckets) {
+            if (bucket.key === key) return true;
+        };
+      
+        return false;
     };
 
     //takes a key as an argument. If the key is in the hash map - removes it and returns true. If the key isn’t in the hash map - returns false.
@@ -115,8 +139,11 @@ export default class Hashmap {
         this.buckets = new Array(this.capacity).fill(null);
         
         oldBuckets.forEach((bucket) => {
-            if (bucket !== null) {
-                this.set(bucket.key, bucket.value);
+            let current = bucket;
+
+            while (current !== null) {
+                this.set(current.key, current.value);
+                current = current.next;
             };
         });
     };
