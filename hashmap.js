@@ -31,7 +31,7 @@ export default class Hashmap {
             return;
         };
         
-        // checks if the same key exists and update the value;
+        // checks if the same key exists and updates the value;
         if (bucket.key === key) {
             bucket.value = value;
         } else {
@@ -48,9 +48,23 @@ export default class Hashmap {
     //takes one argument as a key and returns the value that is assigned to this key. If a key is not found, return null
     get(key) {
         const index = this.hash(key);
-        let bucket = this.buckets[index];       
+        let current = this.buckets[index];
         
-        return bucket ? bucket.value : null;
+        if (!current) {
+            return null;
+        };
+        
+        if (current.key === key) {            
+            return current.value;
+        };
+
+        if (current) {
+            while (current.key !== key) {
+                current = current.next;                                
+            };
+
+            return current ? current.value : null;
+        };        
     };
 
     //takes a key as an argument and returns true or false based on whether or not the key is in the hash map
