@@ -85,13 +85,29 @@ export default class Hashmap {
 
     //takes a key as an argument. If the key is in the hash map - removes it and returns true. If the key isn’t in the hash map - returns false.
     remove(key) {
-        if (this.has(key)) {
-            this.buckets[this.hash(key)] = null;
+        const index = this.hash(key);
+        let current = this.buckets[index];
+        let previous = null;
+
+        while (current !== null && current.key !== key) {
+            previous = current;
+            current = current.next;
+        };
+
+        if (current === null) {
+            return false;
+        };
+        
+        //if it's a first node in the bucket and there is no any previous nodes 
+        if (previous === null) {           
+            this.buckets[index] = current.next;
 
             return true;
         };
 
-        return false;
+        previous.next = current.next;
+
+        return true;       
     };
 
     //returns the number of stored keys in the hash map
