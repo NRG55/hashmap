@@ -69,11 +69,18 @@ export default class Hashmap {
 
     //takes a key as an argument and returns true or false based on whether or not the key is in the hash map
     has(key) {
-        for (let bucket of this.buckets) {
-            if (bucket.key === key) return true;
+        const index = this.hash(key);
+        let current = this.buckets[index];
+        
+        
+        while (current !== null) {
+            if (current.key === key) {                
+                return true;
+            };
+            current = current.next;                                
         };
-      
-        return false;
+
+        return false;        
     };
 
     //takes a key as an argument. If the key is in the hash map - removes it and returns true. If the key isn’t in the hash map - returns false.
