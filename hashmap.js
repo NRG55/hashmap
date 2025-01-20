@@ -115,8 +115,15 @@ export default class Hashmap {
         let length = 0;
 
         this.buckets.forEach((bucket) => {
+            let current = bucket;
+            
             if (bucket !== null) {
                 length++
+                
+                while (current.next !== null) {
+                    length++
+                    current = current.next;
+                };   
             };
         });
 
