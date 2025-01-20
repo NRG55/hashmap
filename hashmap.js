@@ -119,7 +119,7 @@ export default class Hashmap {
             
             if (bucket !== null) {
                 length++
-                
+
                 while (current.next !== null) {
                     length++
                     current = current.next;
@@ -141,8 +141,15 @@ export default class Hashmap {
         let tempArray = [];
 
         this.buckets.forEach((bucket) => {
+            let current = bucket;
+            
             if (bucket !== null) {
                 tempArray.push(bucket.key);
+
+                while (current.next !== null) {
+                    current = current.next;
+                    tempArray.push(current.key);
+                };
             };
         });
 
