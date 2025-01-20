@@ -161,8 +161,15 @@ export default class Hashmap {
         let tempArray = [];
 
         this.buckets.forEach((bucket) => {
+            let current = bucket;
+
             if (bucket !== null) {
                 tempArray.push(bucket.value);
+
+                while (current.next !== null) {
+                    current = current.next;
+                    tempArray.push(current.value);
+                };
             };
         });
 
